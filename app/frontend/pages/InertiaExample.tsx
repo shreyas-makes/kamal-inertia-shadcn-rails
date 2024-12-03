@@ -25,15 +25,19 @@ const TimerComponent: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center space-y-4">
-      <h1 className="text-2xl font-bold">Timer: {time} seconds</h1>
-      <div className="space-x-2">
-        <Button onClick={toggleTimer} variant="outline">
-          {isRunning ? "Pause" : "Start"}
-        </Button>
-        <Button onClick={resetTimer} variant="destructive">
-          Reset
-        </Button>
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md flex flex-col items-center space-y-4">
+        <h1 className="text-3xl font-bold text-gray-800">
+          Timer: {time} seconds
+        </h1>
+        <div className="space-x-4">
+          <Button onClick={toggleTimer} variant="outline" className="w-24">
+            {isRunning ? "Pause" : "Start"}
+          </Button>
+          <Button onClick={resetTimer} variant="destructive" className="w-24">
+            Reset
+          </Button>
+        </div>
       </div>
     </div>
   );
