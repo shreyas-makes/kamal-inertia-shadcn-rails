@@ -40,7 +40,7 @@ aliases:
 volumes:
   - "kamal-inertia-shadcn-rails_storage:/storage/database.sqlite3"
 
-asset_path: /rails/public/vite
+asset_path: /vite-dev
 
 # Configure the image builder.
 builder:
