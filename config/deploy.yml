@@ -5,6 +5,12 @@ image: railshobbyist/kamal-inertia-shadcn-rails
 servers:
   web:
     - 78.47.103.193
+  vite_ssr:
+    hosts:
+      - 192.168.0.1
+    cmd: bundle exec vite ssr
+    options:
+      network-alias: vite_ssr
 
 proxy:
   ssl: true
@@ -22,6 +28,8 @@ env:
     - RAILS_MASTER_KEY
   clear:
     DB_HOST: 192.168.0.2
+    SOLID_QUEUE_IN_PUMA: true
+    VITE_RUBY_HOST: "vite_ssr"
 
 aliases:
   console: app exec --interactive --reuse "bin/rails console"
@@ -31,6 +39,9 @@ aliases:
 
 volumes:
   - "kamal-inertia-shadcn-rails_storage:/storage/database.sqlite3"
+
+asset_path: /rails/public/assets
+asset_path: /rails/public/vite
 
 # Configure the image builder.
 builder:
