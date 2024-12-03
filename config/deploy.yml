@@ -11,10 +11,6 @@ proxy:
   host: kamal-inertia-shadcn-rails.jhanas.club
   app_port: 3000
 
-  username: railshobbyist
-  password:
-    - KAMAL_REGISTRY_PASSWORD
-
 # Credentials for your image host.
 registry:
   username: railshobbyist
