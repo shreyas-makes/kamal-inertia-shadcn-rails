@@ -15,6 +15,12 @@ proxy:
   password:
     - KAMAL_REGISTRY_PASSWORD
 
+# Credentials for your image host.
+registry:
+  username: railshobbyist
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
 env:
   secret:
     - RAILS_MASTER_KEY
