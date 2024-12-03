@@ -1,60 +1,42 @@
-import { Head } from '@inertiajs/react'
-import { useState } from 'react'
+import React, { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
 
-import inertiaSvg from '/assets/inertia.svg'
-import reactSvg from '/assets/react.svg'
-import viteRubySvg from '/assets/vite_ruby.svg'
+const TimerComponent: React.FC = () => {
+  const [time, setTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
 
-import cs from './InertiaExample.module.css'
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isRunning) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isRunning]);
 
-export default function InertiaExample({ name }: { name: string }) {
-  const [count, setCount] = useState(0)
+  const toggleTimer = () => {
+    setIsRunning(!isRunning);
+  };
+
+  const resetTimer = () => {
+    setTime(0);
+    setIsRunning(false);
+  };
 
   return (
-    <>
-      <Head title="Inertia + Vite Ruby + React Example" />
-
-      <div className={cs.root}>
-        <h1 className={cs.h1}>Hello {name}!</h1>
-
-        <div>
-          <a href="https://inertia-rails.netlify.app" target="_blank">
-            <img className={cs.logo} src={inertiaSvg} alt="Inertia logo" />
-          </a>
-          <a href="https://vite-ruby.netlify.app" target="_blank">
-            <img
-              className={`${cs.logo} ${cs.vite}`}
-              src={viteRubySvg}
-              alt="Vite Ruby logo"
-            />
-          </a>
-          <a href="https://react.dev" target="_blank">
-            <img
-              className={`${cs.logo} ${cs.react}`}
-              src={reactSvg}
-              alt="React logo"
-            />
-          </a>
-        </div>
-
-        <h2 className={cs.h2}>Inertia + Vite Ruby + React</h2>
-
-        <div className="card">
-          <button
-            className={cs.button}
-            onClick={() => setCount((count) => count + 1)}
-          >
-            count is {count}
-          </button>
-          <p>
-            Edit <code>app/frontend/pages/InertiaExample.jsx</code> and save to
-            test HMR
-          </p>
-        </div>
-        <p className={cs.readTheDocs}>
-          Click on the Inertia, Vite Ruby, and React logos to learn more
-        </p>
+    <div className="flex flex-col items-center space-y-4">
+      <h1 className="text-2xl font-bold">Timer: {time} seconds</h1>
+      <div className="space-x-2">
+        <Button onClick={toggleTimer} variant="outline">
+          {isRunning ? "Pause" : "Start"}
+        </Button>
+        <Button onClick={resetTimer} variant="destructive">
+          Reset
+        </Button>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
+
+export default TimerComponent;
