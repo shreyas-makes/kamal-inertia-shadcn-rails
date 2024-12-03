@@ -20,13 +20,13 @@ RUN apt-get update -qq && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Install JavaScript dependencies // [!code ++]
-ARG NODE_VERSION=22.11.0 // [!code ++]
-ARG YARN_VERSION=1.22.22 // [!code ++]
-ENV PATH=/usr/local/node/bin:$PATH // [!code ++]
-RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \ // [!code ++]
-/tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \ // [!code ++]
-npm install -g yarn@$YARN_VERSION && \ // [!code ++]
-rm -rf /tmp/node-build-master // [!code ++]
+ARG NODE_VERSION=22.11.0
+ARG YARN_VERSION=1.22.22
+ENV PATH=/usr/local/node/bin:$PATH
+RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
+    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
+    npm install -g yarn@$YARN_VERSION && \
+    rm -rf /tmp/node-build-master
 
 # Set production environment
 ENV RAILS_ENV="production" \
@@ -42,14 +42,7 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libpq-dev node-gyp pkg-config python-is-python3 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Install JavaScript dependencies // [!code --]
-ARG NODE_VERSION=22.11.0 // [!code --]
-ARG YARN_VERSION=1.22.22 // [!code --]
-ENV PATH=/usr/local/node/bin:$PATH // [!code --]
-RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \ // [!code --]
-/tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \ // [!code --]
-npm install -g yarn@$YARN_VERSION && \ // [!code --]
-rm -rf /tmp/node-build-master // [!code --]
+
 
 # Install application gems
 COPY .ruby-version Gemfile Gemfile.lock ./

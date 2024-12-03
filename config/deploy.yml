@@ -27,9 +27,9 @@ env:
   secret:
     - RAILS_MASTER_KEY
   clear:
-    DB_HOST: 192.168.0.2
     SOLID_QUEUE_IN_PUMA: true
     VITE_RUBY_HOST: "vite_ssr"
+    DB_HOST: 192.168.0.2
 
 aliases:
   console: app exec --interactive --reuse "bin/rails console"
@@ -40,7 +40,6 @@ aliases:
 volumes:
   - "kamal-inertia-shadcn-rails_storage:/storage/database.sqlite3"
 
-asset_path: /rails/public/assets
 asset_path: /rails/public/vite
 
 # Configure the image builder.
