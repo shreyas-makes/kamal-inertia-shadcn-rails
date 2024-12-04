@@ -7,7 +7,7 @@ servers:
     - 78.47.103.193
   vite_ssr:
     hosts:
-      - 192.168.0.1
+      - 78.47.103.193
     cmd: bundle exec vite ssr
     options:
       network-alias: vite_ssr
@@ -29,7 +29,8 @@ env:
   clear:
     # SOLID_QUEUE_IN_PUMA: true
     VITE_RUBY_HOST: "vite_ssr"
-    DB_HOST: 192.168.0.2
+    DB_HOST: 78.47.103.193
+    # 192.168.0.2
 
 aliases:
   console: app exec --interactive --reuse "bin/rails console"
