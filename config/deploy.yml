@@ -29,7 +29,7 @@ env:
   clear:
     # SOLID_QUEUE_IN_PUMA: true
     VITE_RUBY_HOST: "vite_ssr"
-    DB_HOST: 78.47.103.193
+    # DB_HOST: 78.47.103.193
     # 192.168.0.2
 
 aliases:
